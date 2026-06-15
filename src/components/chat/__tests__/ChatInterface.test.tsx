@@ -44,7 +44,7 @@ vi.mock("../MessageInput", () => ({
 }));
 
 const mockUseChat = {
-  messages: [],
+  messages: [{ id: "1", role: "user", content: "Hello" }],
   input: "",
   handleInputChange: vi.fn(),
   handleSubmit: vi.fn(),
@@ -170,7 +170,7 @@ test("renders with correct layout classes", () => {
   expect(mainDiv.className).toContain("p-4");
   expect(mainDiv.className).toContain("overflow-hidden");
 
-  const scrollArea = screen.getByTestId("message-list").closest(".flex-1");
+  const scrollArea = screen.getByTestId("message-list").closest("[data-radix-scroll-area-viewport]")?.closest(".flex-1");
   expect(scrollArea?.className).toContain("overflow-hidden");
 
   const inputWrapper = screen.getByTestId("message-input").parentElement;
